@@ -1,11 +1,13 @@
 <?php
+use App\Pages\PagesRepository;
 
 require_once __DIR__ . '/inc/all.php';
 
-$page = $_GET['page'] ?? 'index';
+$page = @(string) ($_GET['page'] ?? 'index');
 
 if( $page === 'index'){
-    var_dump($page.' das ist die index.php');
+    $pagesController = new App\Controller\PagesController(new PagesRepository);
+    $pagesController->showPage('index');
 }
 else{
     $notFoundController = new App\Controller\NotFoundController();
