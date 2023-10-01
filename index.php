@@ -3,11 +3,12 @@ use App\Pages\PagesRepository;
 
 require_once __DIR__ . '/inc/all.php';
 
-$page = @(string) ($_GET['page'] ?? 'index');
+$route = @(string) ($_GET['route'] ?? 'page');
 
-if( $page === 'index'){
+if( $route === 'page'){
     $pagesController = new App\Controller\PagesController(new PagesRepository);
-    $pagesController->showPage('index');
+    $page = @(string) ($_GET['page'] ?? 'index');
+    $pagesController->showPage($page);
 }
 else{
     $notFoundController = new App\Controller\NotFoundController();
