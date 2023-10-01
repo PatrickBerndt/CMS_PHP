@@ -6,7 +6,7 @@ require_once __DIR__ . '/inc/all.php';
 $route = @(string) ($_GET['route'] ?? 'page');
 
 if( $route === 'page'){
-    $pagesController = new App\Controller\PagesController(new PagesRepository);
+    $pagesController = new App\Controller\PagesController(new PagesRepository($pdo));
     $page = @(string) ($_GET['page'] ?? 'index');
     $pagesController->showPage($page);
 }
