@@ -7,18 +7,16 @@ class PagesRepository{
 
     public function __construct(private PDO $pdo){}
 
-    function fetchPage($key){
+    function fetchPage($page){
 
-        $stmt = $this->pdo->prepare('SELECT * FROM `pages`');
+        $stmt = $this->pdo->prepare("SELECT * FROM `pages` WHERE `slug` = :slug");
+        $stmt->bindValue('slug', $page);
         $stmt->execute();
-        $stmt->fetchAll();
-        var_dump($stmt);
-        
-        $pagesModel = new PagesModel;
-        $pagesModel->id = 1;
-        $pagesModel->slug = $key;
-        $pagesModel->title = 'Hallo Welt';
-        $pagesModel->content = 'Ich bin der Seiteninhalt';
-        return $pagesModel;
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS, PagesModel::class);
+        if(empty($result)){
+            return null;
+        }else{
+            return $result;
+        }
     }
 }
