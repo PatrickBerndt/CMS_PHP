@@ -3,6 +3,13 @@
 namespace App\Controller;
 
 abstract class AbstractController {
+
+    protected function showError404(){
+        http_response_code(404);
+       $this->render("notfound/error404", []);
+       
+    }
+
     protected function render($path, array $data = []) {
         ob_start();
         extract($data);

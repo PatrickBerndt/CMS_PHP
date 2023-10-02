@@ -11,6 +11,10 @@ class PagesController extends AbstractController{
     public function showPage(string $pageKey){
         $page = $this->pagesRepository->fetchPage($pageKey);
 
+        if(empty($page)){
+            return $this->showError404();
+        }
+
         $this->render('pages/showPage', [
             'page'=> $page
         ]);
