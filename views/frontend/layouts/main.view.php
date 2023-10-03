@@ -13,6 +13,10 @@
     <header>
         <h1>Ein eigenes CMS</h1>
         <p>Hier finden Sie eine schöne Wetter-App</p>
+        <?php foreach( $navigation AS $navigationElenemt): ?>
+            <a href="index.php?page=<?php echo e($navigationElenemt->slug); ?>"><?php echo e($navigationElenemt->title); ?></a>
+        <?php endforeach ?>
+
     </header>
     <main>
         <?php echo $content; ?>

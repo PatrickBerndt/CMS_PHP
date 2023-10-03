@@ -5,9 +5,10 @@ use App\Pages\PagesRepository;
 
 class PagesController extends AbstractController{
      
-    public function __construct(protected PagesRepository $pagesRepository) {
-        
+    public function __construct(PagesRepository $pagesRepository) {
+        parent::__construct($pagesRepository);
     }
+
     public function showPage(string $pageKey){
         $page = $this->pagesRepository->fetchPage($pageKey);
 

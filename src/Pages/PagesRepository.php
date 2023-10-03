@@ -6,7 +6,13 @@ use PDO;
 class PagesRepository{
 
     public function __construct(private PDO $pdo){}
-
+    
+    public function getNavigation(){
+        $stmt = $this->pdo->prepare('SELECT * FROM `pages` ORDER BY `id` ASC');
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_CLASS, PagesModel::class);
+        
+    }
     function fetchPage(string $page): ?PagesModel {
 
         $stmt = $this->pdo->prepare("SELECT * FROM `pages` WHERE `slug` = :slug");

@@ -11,6 +11,6 @@ if( $route === 'page'){
     $pagesController->showPage($page);
 }
 else{
-    $notFoundController = new App\Controller\NotFoundController();
+    $notFoundController = new App\Controller\NotFoundController(new PagesRepository($pdo));
     $notFoundController->error404();
 }
