@@ -25,7 +25,6 @@ $container->add('pagesAdminController', function() use($container){
     return new \App\Controller\Admin\PagesAdminController($container->get('pagesRepository'));
 });
 
-
 $route = @(string) ($_GET['route'] ?? 'page');
 
 if( $route === 'page'){
