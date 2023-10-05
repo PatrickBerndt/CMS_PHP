@@ -12,7 +12,7 @@ class Container{
 
     public function get($what){
         if(!isset($this->instances[$what])){
-            $this->recepies[$what] = $this->instances[$what];
+            $this->instances[$what] = $this->recepies[$what]();
         }
         return $this->instances[$what];
     }
