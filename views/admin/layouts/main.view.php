@@ -13,9 +13,7 @@
     <header>
         <h1>Admin bereich</h1>
         <p>Hier sollte der Admin bereich abgebildet werden</p>
-        <?php foreach( $navigation AS $navigationElenemt): ?>
-            <a href="index.php?page=<?php echo e($navigationElenemt->slug); ?>"><?php echo e($navigationElenemt->title); ?></a>
-        <?php endforeach ?>
+        
 
     </header>
     <main>
